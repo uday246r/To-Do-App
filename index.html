@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .lists{
+            cursor: pointer;
+        }
+        </style>
+</head>
+    
+<h1>TODO-APP</h1>
+
+<div class="container">
+
+ <div class="container-1">
+    <h2>Input Values</h2>
+   <div class="box">
+        <lable for = "item-input" class="enter">Enter your Input</lable>
+        <input type="text" id="item-input" placeholder="Add your task here" >
+        <button type="button" class="btn" id="submit">Submit</button>
+        <button type="button" class="btn" id="REMOVE">Remove</button>
+    </div>
+
+</div>  
+
+
+<div class="container-2">
+<h2>Lists Items</h2>
+  <div id="list" class="remove" >
+  </div>
+
+</div>
+
+
+</div>
+<i class="fa-solid fa-xmark"></i>
+    <script>
+        let inputField = document.getElementById("item-input");
+        let addButton = document.getElementById("submit");
+        let removeButton = document.getElementById("REMOVE");
+        let listArea =  document.getElementById("list");
+
+        // if(localStorage.getItem('name')){
+        // document.querySelector('label').innerText = localStorage.getItem('name');
+        // }
+
+   
+      
+
+    addButton.addEventListener("click", function() {
+        if (inputField.value.trim() === "") return;
+    var listItems = document.createElement("li");
+
+    var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.style.marginLeft = "15px";
+
+    var taskText = document.createElement("span");
+    taskText.innerText = inputField.value;
+    // localStorage.setItem('name',taskText.value);
+
+
+  checkbox.addEventListener('click',function(){
+    if(checkbox.checked){
+        taskText.style.textDecoration = "line-through";
+    }
+    else{
+        taskText.style.textDecoration = "none";
+
+    }
+  })
+    
+    var removeButton = document.createElement("i");
+    removeButton.className = "fa-solid fa-xmark";
+    removeButton.style.marginLeft = "20px"; 
+    removeButton.style.cursor = "pointer"; 
+
+    removeButton.addEventListener("click", function() {
+        listArea.removeChild(listItems);
+
+        // localStorage.remove(listItems);
+    });
+
+    listItems.appendChild(taskText);
+    listItems.appendChild(checkbox);
+
+    listItems.appendChild(removeButton);
+
+    listArea.appendChild(listItems);
+
+
+    inputField.value = "";
+});
+
+        removeButton.addEventListener('click', function() {
+    while (listArea.firstChild) {
+        listArea.removeChild(listArea.firstChild);
+    }
+
+    // localStorage.remove(listArea);
+
+});
+    
+        </script>
+</body>
+</html>
+
